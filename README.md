@@ -1,227 +1,244 @@
-# AQI_taly - Smart Air Quality Map for Italy 🇮🇹
+# AQI_taly - Mappa intelligente della qualità dell'aria per l'Italia 🇮🇹
 
-An intelligent air quality monitoring system for Italy that provides real-time pollution data, forecasting, and contextual environmental information.
+Un sistema intelligente di monitoraggio della qualità dell'aria per l'Italia che fornisce dati sull'inquinamento in tempo reale, previsioni e informazioni ambientali contestuali.
 
-## 🌟 Features
+**[Link Presentazione](https://canva.link/o9kh9phlb0qnts9)**
 
-### Core Functionality
-- **Real-time Air Quality Monitoring**: Live PM10 and PM2.5 data from monitoring stations across Italy
-- **Interactive Map**: Leaflet-based map with intuitive visualization of pollution levels
-- **AI-Powered Forecasting**: Prophet-based time series forecasting for pollution predictions
-- **Contextual Layers**: 
-  - Active fires tracking (incendioggi.it integration)
-  - Industrial facilities mapping with pollution impact analysis
-  - BBOX spatial filtering for optimized performance
+## 🌟 Funzionalità
 
-### Smart Features
-- **Pollution Source Analysis**: AI-driven identification of pollution sources for each monitoring station
-- **Smart Icon States**: Visual feedback showing which industries are contributing to pollution
-- **Debounced Map Updates**: Optimized API calls triggered only on map interaction (zoom/pan)
-- **Lazy Loading**: Efficient data loading for popups and details
+### Funzionalità principali
+- **Monitoraggio della qualità dell'aria in tempo reale**: Dati PM10 e PM2.5 in tempo reale dalle stazioni di monitoraggio in tutta Italia
+- **Mappa interattiva**: Mappa basata su Leaflet con visualizzazione intuitiva dei livelli di inquinamento
+- **Previsioni basate sull'IA**: Previsioni di serie temporali basate su Prophet per le previsioni di inquinamento
+- **Livelli contestuali**:
 
-### Data Visualization
-- **Dual View Modes**: Switch between real-time data and forecast views
-- **Color-coded Stations**: Green (good), yellow (moderate), red (poor) air quality indicators
-- **Comprehensive Station Details**: Historical data, trends, and pollution analysis
-- **Forecast Timeline**: Interactive timeline for exploring future pollution predictions
+- Monitoraggio degli incendi attivi (integrazione con incendioggi.it)
 
-## 🏗️ Architecture
+- Mappatura degli impianti industriali con analisi dell'impatto dell'inquinamento
+- Filtro spaziale BBOX per prestazioni ottimizzate
+
+### Funzionalità intelligenti
+- **Analisi delle fonti di inquinamento**: Identificazione basata sull'IA delle fonti di inquinamento per ogni stazione di monitoraggio
+- **Stati delle icone intelligenti**: Feedback visivo che mostra quali industrie contribuiscono all'inquinamento
+- **Aggiornamenti della mappa con debounce**: Chiamate API ottimizzate attivate solo all'interazione con la mappa (zoom/pan)
+- **Lazy Loading**: Caricamento efficiente dei dati per popup e dettagli
+
+### Visualizzazione dei dati
+- **Doppia modalità di visualizzazione**: Passa dai dati in tempo reale alle previsioni Visualizzazioni
+- **Stazioni con codifica a colori**: indicatori di qualità dell'aria verde (buona), giallo (moderata), rosso (scarsa)
+- **Dettagli completi delle stazioni**: dati storici, tendenze e analisi dell'inquinamento
+- **Cronologia delle previsioni**: cronologia interattiva per esplorare le previsioni future sull'inquinamento
+
+## 🏗️ Architettura
 
 ### Backend (Python/Flask)
-- **Framework**: Flask with Flask-CORS and Flask-Caching
-- **Data Sources**:
-  - ARPA (Regional Environmental Protection Agencies)
-  - OpenWeatherMap API for air quality data
-  - incendioggi.it for fire tracking
-  - E-PRTR Database for industrial facilities
-- **Forecasting**: Facebook Prophet for time series prediction
-- **Caching**: 30-minute cache for optimal performance
+- **Framework**: Flask con Flask-CORS e Flask-Caching
+- **Fonti dati**:
+
+- ARPA (Agenzie regionali per la protezione ambientale)
+
+- API OpenWeatherMap per i dati sulla qualità dell'aria
+
+- incendioggi.it per il monitoraggio degli incendi
+
+- Database E-PRTR per gli impianti industriali
+- **Previsioni**: Facebook Prophet per la previsione di serie temporali
+- **Caching**: cache di 30 minuti per prestazioni ottimali
 
 ### Frontend (React)
-- **Framework**: React 18 with Hooks
-- **Mapping**: React-Leaflet for interactive maps
-- **State Management**: React Context and local state
-- **UI Components**: Custom floating UI with professional design
-- **Optimization**: Memoization and debouncing for smooth performance
+- **Framework**: React 18 con Hooks
+- **Mappatura**: React-Leaflet per la visualizzazione interattiva mappe
+- **Gestione dello stato**: Contesto React e stato locale
+- **Componenti UI**: Interfaccia utente flottante personalizzata con design professionale
+- **Ottimizzazione**: Memoizzazione e debouncing per prestazioni fluide
 
-## 📦 Installation
+## 📦 Installazione
 
-### Prerequisites
+### Prerequisiti
 - Python 3.8+
 - Node.js 14+
-- npm or yarn
+- npm o yarn
 
-### Backend Setup
+### Configurazione del backend
 
 ```bash
 cd backend
 
-# Create virtual environment
+# Crea un ambiente virtuale
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate # Su Windows: venv\Scripts\activate
 
-# Install dependencies
+# Installa le dipendenze
 pip install -r requirements.txt
 
-# Create .env file
+# Crea il file .env
 cp .env.example .env
-# Edit .env and add your OpenWeatherMap API key
+# Modifica il file .env e aggiungi la tua chiave API di OpenWeatherMap
 
-# Run the backend
+# Avvia il backend
 python app.py
 ```
 
-The backend will start on `http://localhost:5000`
+Il backend verrà avviato su `http://localhost:5000`
 
-### Frontend Setup
+### Configurazione del frontend
 
 ```bash
 cd frontend
 
-# Install dependencies
+# Installa le dipendenze
 npm install
 
-# Start development server
+# Avvia il server di sviluppo
 npm start
 ```
 
-The frontend will start on `http://localhost:3000`
+Il frontend si avvierà su `http://localhost:3000`
 
-## 🔧 Configuration
+## 🔧 Configurazione
 
-### Backend Environment Variables
+### Variabili d'ambiente del backend
 
-Create a `.env` file in the `backend` directory:
+Crea un file `.env` nella directory `backend`:
 
 ```env
-OWM_API_KEY=your_openweathermap_api_key_here
+OWM_API_KEY=la_tua_chiave_API_openweathermap_qui
 FLASK_ENV=development
 FLASK_DEBUG=True
 ```
 
-### API Keys
+### Chiavi API
 
-- **OpenWeatherMap API**: Get your free API key at [openweathermap.org](https://openweathermap.org/api)
+- **API di OpenWeatherMap**: Ottieni la tua chiave API gratuita su [openweathermap.org](https://openweathermap.org/api)
 
-## 🚀 Usage
+## 🚀 Utilizzo
 
-1. **Start the Backend**: Run `python app.py` in the backend directory
-2. **Start the Frontend**: Run `npm start` in the frontend directory
-3. **Open Browser**: Navigate to `http://localhost:3000`
-4. **Explore the Map**:
-   - Click on stations to view detailed information
-   - Toggle between PM10 and PM2.5 pollutants
-   - Switch between daily and hourly data
-   - Enable contextual layers (fires, industries)
-   - Switch to forecast mode to see predictions
+1. **Avvia il backend**: Esegui 1. Eseguire `python app.py` nella directory backend
+2. **Avviare il Frontend**: Eseguire `npm start` nella directory frontend
+3. **Aprire il browser**: Accedere a `http://localhost:3000`
+4. **Esplorare la mappa**:
 
-## 📊 API Endpoints
+- Fare clic sulle stazioni per visualizzare informazioni dettagliate
 
-### Core Endpoints
-- `GET /api/map-base` - Base map data with all stations
-- `GET /api/realtime-details` - Real-time hourly data
-- `GET /api/forecast-maps` - Forecast data for map visualization
-- `GET /api/map-layers` - Contextual layers (fires, industries) with BBOX filtering
+- Passare da PM10 a PM2.5
 
-### Station Details
-- `GET /api/station/<station_id>` - Detailed station information
-- `GET /api/pollution-analysis` - AI-powered pollution source analysis
+- Passare da dati giornalieri a dati orari
 
-### Contextual Data
-- `GET /api/industry-details/<industry_id>` - Industrial facility details
-- `GET /api/fire-details/<fire_id>` - Fire incident details
+- Abilitare i layer contestuali (incendi, industrie)
 
-## 🧪 Testing
+- Passare alla modalità previsione per visualizzare le previsioni
 
-### Backend Tests
+## 📊 Endpoint API
+
+### Endpoint principali
+- `GET /api/map-base` - Dati base della mappa con tutte le stazioni
+- `GET /api/realtime-details` - Dati orari in tempo reale
+- `GET /api/forecast-maps` - Dati di previsione per la visualizzazione della mappa
+- `GET /api/map-layers` - Layer contestuali (incendi, industrie) con filtro BBOX
+
+### Dettagli stazione
+- `GET `/api/station/<station_id>` - Informazioni dettagliate sulla stazione
+- `GET /api/pollution-analysis` - Analisi delle fonti di inquinamento basata sull'intelligenza artificiale
+
+### Dati contestuali
+- `GET /api/industry-details/<industry_id>` - Dettagli sugli impianti industriali
+- `GET /api/fire-details/<fire_id>` - Dettagli sugli incendi
+
+## 🧪 Test
+
+### Test del backend
 ```bash
 cd backend
 pytest
 ```
 
-### Frontend Tests
+### Test del frontend
 ```bash
 cd frontend
 npm test
 ```
 
-## 🎨 Features in Detail
+## 🎨 Funzionalità in dettaglio
 
-### BBOX Spatial Filtering
-Optimizes map performance by filtering industries and fires based on the visible viewport:
-- Automatic BBOX calculation on map movement
-- 500ms debounce to prevent API spam
-- Server-side spatial filtering
-- Graceful degradation if filtering fails
+### Filtro spaziale BBOX
+Ottimizza le prestazioni della mappa filtrando industrie e incendi in base alla visuale visibile:
+- Calcolo automatico del BBOX durante il movimento sulla mappa
+- Debounce di 500 ms per prevenire lo spam delle API
+- Filtro spaziale lato server
+- Gradleful degrado in caso di fallimento del filtraggio
 
-### Smart Icon States
-Visual feedback system for pollution sources:
-- **Neutral State**: 50% opacity, no border (non-pollution sources)
-- **Active State**: 100% opacity, red border with pulse animation (pollution sources)
-- Reactive updates based on pollution analysis
+### Stati delle icone intelligenti
+Sistema di feedback visivo per le fonti di inquinamento:
+- **Stato neutro**: opacità del 50%, nessun bordo (fonti non inquinanti)
+- **Stato attivo**: opacità del 100%, bordo rosso con animazione a impulsi (fonti inquinanti)
+- Aggiornamenti reattivi basati sull'analisi dell'inquinamento
 
-### Pollution Source Analysis
-AI-driven analysis that identifies:
-- Industrial emissions
-- Traffic patterns
-- Fire incidents
-- Meteorological conditions
-- Provides actionable insights for each station
+### Analisi delle fonti di inquinamento
+Analisi basata sull'IA che identifica:
+- Emissioni industriali
+- Modelli di traffico
+- Incidenti da incendio
+- Condizioni meteorologiche
+- Fornisce informazioni utili per ogni stazione
 
-## 📁 Project Structure
+## 📁 Struttura del progetto
 
 ```
 AQI_taly/
 ├── backend/
-│   ├── app.py                 # Main Flask application
-│   ├── context/
-│   │   ├── industry_checker.py  # Industrial facilities logic
-│   │   └── fire_fetcher.py      # Fire tracking logic
-│   ├── requirements.txt       # Python dependencies
-│   └── .env                   # Environment variables
+│ ├── app.py # Applicazione Flask principale
+│ ├── context/
+│ │ ├── industry_checker.py # Logica per gli impianti industriali
+│ │ └── fire_fetcher.py # Logica per il monitoraggio degli incendi
+│ ├── requirements.txt # Dipendenze Python
+│ └── .env # Variabili d'ambiente
 ├── frontend/
-│   ├── src/
-│   │   ├── App.js            # Main React component
-│   │   ├── components/       # React components
-│   │   ├── hooks/            # Custom React hooks
-│   │   └── index.js          # Entry point
-│   ├── package.json          # Node dependencies
-│   └── public/               # Static assets
-├── AnalisiGeodatabase/       # GeoDatabase analysis tools
-└── README.md                 # This file
+│ ├── src/
+│ │ ├── App.js # Componente React principale
+│ │ ├── components/ # Componenti React
+│ │ ├── hooks/ # Hook React personalizzati
+│ │ └── index.js # Punto di ingresso
+│ ├── package.json # Dipendenze Node
+│ └── public/ # Risorse statiche
+├── AnalisiGeodatabase/ # Strumenti di analisi del GeoDatabase
+└── README.md # Questo file
 ```
 
-## 🤝 Contributing
+## 🤝 Contributi
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+I contributi sono benvenuti! Non esitate a inviare una Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Effettua il fork del repository
+2. Crea il tuo branch di funzionalità (`git checkout -b feature/AmazingFeature`)
+3. Esegui il commit delle modifiche (`git commit -m 'Aggiungi una funzionalità straordinaria'`)
+4. Esegui il push sul branch (`git push origin feature/AmazingFeature`)
+5. Apri una Pull Request
 
-## 📝 License
+## 📝 Licenza
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Questo progetto è rilasciato sotto licenza MIT - consulta il file LICENSE per i dettagli.
 
-## 🙏 Acknowledgments
+## 🙏 Ringraziamenti
 
-- **Data Sources**:
-  - ARPA (Regional Environmental Protection Agencies)
-  - OpenWeatherMap
-  - incendioggi.it
-  - E-PRTR Database
-- **Libraries**:
-  - Flask & React ecosystems
-  - Facebook Prophet for forecasting
-  - Leaflet for mapping
-  - Hypothesis for property-based testing
+- **Fonti dei dati**:
 
-## 📧 Contact
+- ARPA (Agenzie regionali per la protezione ambientale)
 
-For questions or feedback, please open an issue on GitHub.
+- OpenWeatherMap
+
+- incendioggi.it
+
+- Database E-PRTR
+- **Librerie**:
+
+- Ecosistemi Flask e React
+
+- Facebook Prophet per le previsioni
+
+- Leaflet per la mappatura
+
+- Hypothesis per i test basati sulle proprietà
 
 ---
 
-Made with ❤️ for cleaner air in Italy
+Realizzato con ❤️ per un'aria più pulita in Italia
